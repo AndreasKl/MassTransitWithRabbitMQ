@@ -15,20 +15,22 @@ namespace Samples.MassTransit
     {
       container.Register( AllTypes.FromThisAssembly().BasedOn<IConsumer>() );
 
-      var bus = ServiceBusFactory.New(
+      Func<PerformanceCounter> processorCounterFactoryMethod = () => new PerformanceCounter( "Process", "% Processor Time", "_Total" );
+      container.Register( Component.For<PerformanceCounter>().UsingFactoryMethod( processorCounterFactoryMethod ).Named( "Processor" ) );
+
+      Func<PerformanceCounter> memoryCounterFactoryMethod = () => new PerformanceCounter( "Memory", "Available MBytes" );
+      container.Register( Component.For<PerformanceCounter>().UsingFactoryMethod( memoryCounterFactoryMethod ).Named( "Memory" ) );
+
+      Func<IServiceBus> serviceBusFactoryMethod = () => ServiceBusFactory.New(
         sbc =>
         {
           sbc.UseLog4Net();
           sbc.UseRabbitMq();
           sbc.ReceiveFrom( "rabbitmq://localhost/sample" );
-          sbc.SetShutdownTimeout( TimeSpan.FromSeconds( 5 ) );
           sbc.Subscribe( x => x.LoadFrom( container ) );
         } );
+      container.Register( Component.For<IServiceBus>().UsingFactoryMethod( serviceBusFactoryMethod ) );
 
-      var ramCounter = new PerformanceCounter( "Memory", "Available MBytes" );
-      var cpuCounter = new PerformanceCounter( "Process", "% Processor Time", "_Total" );
-
-      container.Register( Component.For<IServiceBus>().Instance( bus ) );
       container.Register(
         Component.For<SystemStatusController>()
                  .ImplementedBy<SystemStatusController>()
@@ -36,8 +38,6 @@ namespace Samples.MassTransit
                    Dependency.OnComponent( "ramPerformanceCounter", "Memory" ),
                    Dependency.OnComponent( "cpuPerformanceCounter", "Processor" )
           ) );
-      container.Register( Component.For<PerformanceCounter>().Instance( cpuCounter ).Named( "Processor" ) );
-      container.Register( Component.For<PerformanceCounter>().Instance( ramCounter ).Named( "Memory" ) );
     }
   }
 }

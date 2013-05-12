@@ -21,12 +21,13 @@ namespace Samples.MassTransit
       var systemStatusController = container.Resolve<SystemStatusController>();
       for( int i = 0; i < 25; i++ )
       {
-        systemStatusController.PublishSystemStatus(); 
+        systemStatusController.PublishSystemStatus();
         Thread.Sleep( 300 );
       }
 
       Console.WriteLine( "Press any key to exit." );
       Console.ReadKey();
+
       container.Dispose();
     }
   }
