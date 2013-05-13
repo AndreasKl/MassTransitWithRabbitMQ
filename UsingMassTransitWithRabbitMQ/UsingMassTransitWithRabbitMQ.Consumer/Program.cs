@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Threading;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
-using Samples.MassTransit.SystemStatus;
+using MassTransit;
 using log4net;
 
-namespace Samples.MassTransit
+namespace UsingMassTransitWithRabbitMQ.Consumer
 {
   public class Program
   {
@@ -13,17 +12,13 @@ namespace Samples.MassTransit
 
     public static void Main( string[] args )
     {
-      Log.Info( "Starting mass transit producer." );
+      Log.Info( "Starting mass transit consumer." );
 
       var container = new WindsorContainer();
       container.Install( FromAssembly.This() );
-
-      var systemStatusController = container.Resolve<SystemStatusController>();
-      for( int i = 0; i < 25; i++ )
-      {
-        systemStatusController.PublishSystemStatus();
-        Thread.Sleep( 500 );
-      }
+      
+      // Resolve the bus to start the consumer
+      container.Resolve<IServiceBus>();
 
       Console.WriteLine( "Press any key to exit." );
       Console.ReadKey();

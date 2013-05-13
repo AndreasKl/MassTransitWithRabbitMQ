@@ -1,16 +1,15 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: log4net.Config.XmlConfigurator( Watch = true )]
-
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle( "UsingMassTransitWithRabbitMQ.Producer" )]
+
+[assembly: AssemblyTitle( "UsingMassTransitWithRabbitMQ.Messages" )]
 [assembly: AssemblyDescription( "" )]
 [assembly: AssemblyConfiguration( "" )]
 [assembly: AssemblyCompany( "" )]
-[assembly: AssemblyProduct( "UsingMassTransitWithRabbitMQ.Producer" )]
+[assembly: AssemblyProduct( "UsingMassTransitWithRabbitMQ.Messages" )]
 [assembly: AssemblyCopyright( "Copyright ©  2013" )]
 [assembly: AssemblyTrademark( "" )]
 [assembly: AssemblyCulture( "" )]
@@ -23,7 +22,7 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 
-[assembly: Guid( "7e3f7f13-bc7a-46f8-a5f9-2bbe1b17c4d9" )]
+[assembly: Guid( "cb87094e-5dd2-46c8-b5b4-7c7a3b8371b4" )]
 
 // Version information for an assembly consists of the following four values:
 //

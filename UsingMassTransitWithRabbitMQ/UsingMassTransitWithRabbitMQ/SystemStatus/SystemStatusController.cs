@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using MassTransit;
-using Samples.MassTransit.Messages;
 
 namespace Samples.MassTransit.SystemStatus
 {
@@ -34,34 +33,6 @@ namespace Samples.MassTransit.SystemStatus
     {
       var message = new SystemStatusMessage( (int) m_CpuPerformanceCounter.NextValue(), (int) m_RamPerformanceCounter.NextValue() );
       m_Bus.Publish( message );
-    }
-  }
-
-  public class SystemStatusMessage : ISystemStatusMessage
-  {
-    public SystemStatusMessage( int cpuLoad, int memoryLoad )
-    {
-      CorrelationId = Guid.NewGuid();
-      CpuLoad = cpuLoad;
-      MemoryLoad = memoryLoad;
-    }
-
-    public Guid CorrelationId
-    {
-      get;
-      private set;
-    }
-
-    public int CpuLoad
-    {
-      get;
-      private set;
-    }
-
-    public int MemoryLoad
-    {
-      get;
-      private set;
     }
   }
 }

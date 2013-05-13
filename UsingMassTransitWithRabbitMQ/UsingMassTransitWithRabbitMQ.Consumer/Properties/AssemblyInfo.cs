@@ -6,11 +6,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle( "UsingMassTransitWithRabbitMQ.Producer" )]
+
+[assembly: AssemblyTitle( "UsingMassTransitWithRabbitMQ.Consumer" )]
 [assembly: AssemblyDescription( "" )]
 [assembly: AssemblyConfiguration( "" )]
 [assembly: AssemblyCompany( "" )]
-[assembly: AssemblyProduct( "UsingMassTransitWithRabbitMQ.Producer" )]
+[assembly: AssemblyProduct( "UsingMassTransitWithRabbitMQ.Consumer" )]
 [assembly: AssemblyCopyright( "Copyright ©  2013" )]
 [assembly: AssemblyTrademark( "" )]
 [assembly: AssemblyCulture( "" )]
@@ -23,7 +24,7 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 
-[assembly: Guid( "7e3f7f13-bc7a-46f8-a5f9-2bbe1b17c4d9" )]
+[assembly: Guid( "a62b2154-f483-4d11-bd12-242cbd382fee" )]
 
 // Version information for an assembly consists of the following four values:
 //
